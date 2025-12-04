@@ -1,0 +1,1515 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  overflow-x: hidden;
+}
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* ==============================
+   ANIMACIONES
+   ============================== */
+
+/* Animación para diseños dorados */
+@keyframes floatAnimation {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+/* Animación para texto que entra de abajo hacia arriba */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación sutil para el sombrero */
+@keyframes hatEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(-150%) rotate(-20deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-120%) rotate(10deg);
+  }
+  75% {
+    transform: translateY(-105%) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-100%) rotate(0deg);
+  }
+}
+
+/* ==============================
+   ANIMACIONES INICIALES
+   ============================== */
+
+/* Animaciones solo para hero section al cargar */
+.hero-decoration.top-left, 
+.hero-decoration.top-right,
+.hero-decoration.bottom-left {
+  animation: floatAnimation 6s ease-in-out infinite;
+}
+
+.hero-decoration.top-left {
+  animation-delay: 0s;
+}
+
+.hero-decoration.top-right {
+  animation-delay: 2s;
+  animation-duration: 7s;
+}
+
+.hero-decoration.bottom-left {
+  animation-delay: 4s;
+  animation-duration: 8s;
+}
+
+.hero-text h3,
+.hero-text h1,
+.hero-text p,
+.graduation-hat {
+  animation: slideUpFadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.hero-text h3 {
+  animation-delay: 0.3s;
+}
+
+.hero-text h1 {
+  animation-delay: 0.6s;
+}
+
+.hero-text p {
+  animation-delay: 0.9s;
+}
+
+/* ==============================
+   HERO SECTION - VERSIÓN DESKTOP (BASE)
+   ============================== */
+.hero {
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(112, 122, 110, 0.85);
+  color: white;
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  width: 100%;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: nowrap;
+  position: relative;
+}
+/* Decoraciones doradas DESKTOP */
+.hero-decoration {
+  position: absolute;
+  opacity: 0.9;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-decoration.top-left {
+  top: -210px;
+  left: -100px;
+  width: 550px;
+  height: 550px;
+  object-fit: contain;
+}
+.hero-decoration.top-right {
+  top: -10px;
+  right: -30px;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+.hero-decoration.bottom-left {
+  bottom: -150px;
+  left: -10px;
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+.hero-icon {
+  width: 550px;
+  height: 570px;
+  opacity: 2;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.hero-text h3 {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero-text h1 {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  word-spacing: normal;
+}
+.hero-text p {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.hero-inline {
+  text-align: left;
+  line-height: 1.1;
+}
+.hero-inline h1 {
+  word-spacing: normal;
+  font-size: 120px;
+  line-height: 0.85;
+}
+
+/* ==============================
+   MAIN SECTION - DESKTOP
+   ============================== */
+.main-section {
+  background-color: #ffffff;
+  padding: 60px 40px 30px 40px;
+  text-align: center;
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+  position: relative;
+  z-index: 2;
+}
+.photo-section {
+  position: relative;
+  flex-shrink: 0;
+}
+.photo-frame {
+  width: 300px;
+  height: 380px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-frame .frame-border {
+  width: 700px;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+}
+.text-section {
+  text-align: center;
+  flex: 1;
+  max-width: 450px;
+}
+.text-section.text-left {
+  text-align: left;
+  flex: 1;
+  max-width: 450px;
+  padding-left: 30px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.blessing {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  font-family: Cambria, "Times New Roman", serif;
+  font-weight: 500;
+}
+.parents-names {
+  margin: 25px 0;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.parents-names p {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.separator {
+  width: 40px;
+  height: 1px;
+  background-color: #d4af37;
+  margin: 18px auto;
+}
+.invitation-text {
+  font-size: 20px;
+  color: #666;
+  margin: 30px 0 15px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  font-family: Cambria, "Times New Roman", serif;
+  font-weight: 500;
+}
+.graduation-title {
+  font-size: 60px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 15px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+
+/* ==============================
+   SEPARADORES
+   ============================== */
+.section-spacer {
+  height: 40px;
+  background-color: #ffffff;
+  width: 100%;
+}
+.section-gap {
+  height: 60px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/* ==============================
+   COUNTDOWN SECTION - DESKTOP
+   ============================== */
+.countdown-section {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 120px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.countdown-content {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.countdown-title {
+  font-size: 25px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 40px 0;
+}
+.countdown-item {
+  background-color: white;
+  padding: 40px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
+.countdown-number {
+  font-size: 84px;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 5px;
+}
+.countdown-label {
+  font-size: 18px;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.countdown-separator {
+  width: 300px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.countdown-para {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.event-date {
+  font-size: 25px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+}
+
+/* ==============================
+   EVENT SECTION - DESKTOP
+   ============================== */
+.event-section {
+  background-image: url('img/fondo_general.png');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-blend-mode: overlay;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Cambria, "Times New Roman", serif;
+  width: 100%;
+}
+.event-section .event-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.event-section .event-info {
+  padding: 30px;
+  margin: 0 auto 40px;
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  font-family: Cambria, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.event-section .event-info h3 {
+  font-size: 25px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.event-section .event-info p {
+  font-size: 20px;
+  color: #666;
+  line-height: 1.6;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.event-section .map-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #4a7c59;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+  cursor: pointer;
+  width: auto;
+}
+.event-section .map-button:hover {
+  background-color: #3d6b4d;
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* ==============================
+   CONFIRMATION SECTION - DESKTOP
+   ============================== */
+.confirmation-section {
+  background-image: url('img/fondo_general.png');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-blend-mode: overlay;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Cambria, "Times New Roman", serif;
+  width: 100%;
+}
+
+/* ==============================
+   ITINERARY SECTION - DESKTOP
+   ============================== */
+.itinerary-section {
+  background-image: url('img/fondo_general.png');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-blend-mode: overlay;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Cambria, "Times New Roman", serif;
+  width: 100%;
+}
+
+/* ==============================
+   THANKS SECTION - DESKTOP
+   ============================== */
+.thanks-section {
+  background-color: #ffffff;
+  padding: 40px 40px 50px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  font-family: Cambria, "Times New Roman", serif;
+  width: 100%;
+}
+.thanks-content {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.thanks-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.thanks-decoration {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+  object-fit: contain;
+  filter: opacity(10);
+}
+.thanks-text {
+  font-size: 20px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.thanks-text strong {
+  font-weight: 600;
+  color: #333;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.thanks-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-top: 25px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.thanks-decorations {
+  position: absolute;
+  top: 0;
+  left: -300px;
+  height: 100%;
+  width: auto;
+  max-width: 800px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ==============================
+   CONFIRMATION CONTENT - DESKTOP
+   ============================== */
+.confirmation-content {
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.confirmation-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.form-group {
+  margin: 20px 0;
+  width: 100%;
+}
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 20px;
+  font-family: Cambria, "Times New Roman", serif;
+  transition: border-color 0.3s;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #d4af37;
+}
+.confirm-button {
+  background-color: #4a7c59;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-family: Cambria, "Times New Roman", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.confirm-button:hover {
+  background-color: #3d6b4d;
+  transform: translateY(-2px);
+}
+.confirmation-note {
+  font-size: 13px;
+  color: #999;
+  margin-top: 20px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.confirmation-note a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.confirmation-note a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   ITINERARY CONTENT - DESKTOP
+   ============================== */
+.itinerary-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  font-family: Cambria, "Times New Roman", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.itinerary-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 40px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+.itinerary-list {
+  list-style: none;
+  text-align: left;
+  font-family: Cambria, "Times New Roman", serif;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 0;
+}
+.itinerary-list::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #d4af37;
+  transform: translateX(-50%);
+}
+.itinerary-item {
+  display: flex;
+  margin-bottom: 40px;
+  align-items: flex-start;
+  font-family: Cambria, "Times New Roman", serif;
+  position: relative;
+  width: 100%;
+}
+.itinerary-item:nth-child(odd) {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-right: calc(50% + 40px);
+}
+.itinerary-item:nth-child(even) {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding-left: calc(50% + 40px);
+}
+.itinerary-item::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #d4af37;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  left: 50%;
+  top: 15px;
+  transform: translateX(-50%);
+  z-index: 5;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.itinerary-time {
+  font-size: 22px;
+  font-weight: 600;
+  color: #d4af37;
+  min-width: 120px;
+  font-family: Cambria, "Times New Roman", serif;
+  text-align: right;
+  padding-right: 20px;
+}
+.itinerary-item:nth-child(even) .itinerary-time {
+  text-align: left;
+  padding-right: 0;
+  padding-left: 20px;
+}
+.itinerary-description {
+  font-size: 18px;
+  color: #666;
+  font-family: Cambria, "Times New Roman", serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1;
+  border-left: 4px solid #d4af37;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.itinerary-item:nth-child(even) .itinerary-description {
+  border-left: none;
+  border-right: 4px solid #d4af37;
+}
+
+/* ==============================
+   FOOTER - DESKTOP
+   ============================== */
+.footer {
+  background-color: #f5f5f5;
+  padding: 30px 40px;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+.footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   DECORACIONES DESKTOP
+   ============================== */
+.diagonal-strip {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+.diagonal-strip img {
+  width: 150px;
+  position: absolute;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 10;
+}
+.strip-1 {
+  left: -160px;
+  top: -100px;
+  transform: rotate(18deg);
+  z-index: 10;
+}
+.strip-2 {
+  right: 700px;
+  top: -830px;
+  transform: rotate(-98deg);
+  z-index: 10;
+}
+.strip-3 {
+  right: 210px;
+  top: 180px;
+  transform: rotate(100deg);
+  z-index: 10;
+}
+
+.middle-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+}
+.middle-strip {
+  position: absolute;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 10;
+}
+.strip-left {
+  left: -130px;
+  top: 350px;
+  transform: rotate(15deg);
+  width: 150px;
+}
+.strip-right {
+  right: -130px;
+  top: 370px;
+  transform: rotate(-15deg);
+  width: 150px;
+}
+
+.countdown-strip {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 10;
+}
+.strip-top-left {
+  top: -10px;
+  left: -120px;
+  transform: rotate(-20deg);
+  width: 150px;
+}
+.strip-top-right {
+  top: 50px;
+  right: -120px;
+  transform: rotate(-20deg);
+  width: 150px;
+}
+
+.event-laurels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.laurel-left, .laurel-right {
+  position: absolute;
+  height: 180px;
+  width: auto;
+  opacity: 10;
+  z-index: 1;
+}
+.laurel-left {
+  left: 700px;
+  top: 55%;
+  transform: translateY(-50%);
+}
+.laurel-right {
+  right: 700px;
+  top: 55%;
+  transform: translateY(-50%);
+}
+
+.section-strips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.strip-left-side, .strip-right-side, .strip-left-side-two {
+  position: absolute;
+  opacity: 0.8;
+  height: 700px;
+  width: auto;
+  z-index: 1;
+}
+.strip-left-side {
+  left: -120px;
+  top: 50%;
+  transform: translateY(-50%) rotate(15deg);
+}
+.strip-left-side-two {
+  left: -130px;
+  top: 30%;
+  transform: translateY(-50%) rotate(-15deg);
+}
+.strip-right-side {
+  right: -120px;
+  top: 70%;
+  transform: translateY(-50%) rotate(-15deg);
+}
+
+/* ==============================
+   SOMBRERO DE GRADUACIÓN - DESKTOP
+   ============================== */
+.graduation-hat {
+  position: absolute;
+  width: 160px;
+  height: auto;
+  top: 190px;
+  left: 108%;
+  transform: translateX(-50%) translateY(-100%) rotate(0deg);
+  z-index: 5;
+  opacity: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  animation: hatEntry 1.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+
+/* ==============================
+   RESPONSIVE PARA CELULAR (768px o menos)
+   ============================== */
+@media (max-width: 768px) {
+  /* HERO SECTION - CELULAR (AJUSTADO COMO LA IMAGEN) */
+  .hero {
+    padding: 30px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+  
+  .hero-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-icon {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+  
+  .hero-text {
+    width: 100%;
+    text-align: left;
+  }
+  
+  .hero-text h3 {
+    font-size: 26px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .hero-text h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 0.9;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .hero-inline {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .hero-inline h1 {
+    font-size: 80px;
+    line-height: 0.85;
+    word-spacing: normal;
+    text-align: left;
+  }
+  
+  .hero-text p {
+    font-size: 28px;
+    letter-spacing: 0.8px;
+    line-height: 1.4;
+    margin-top: 15px;
+    text-align: left;
+  }
+  
+  /* Ajustar decoraciones para celular */
+  .hero-decoration.top-left {
+    top: -40px;
+    left: -40px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.7;
+  }
+  
+  .hero-decoration.top-right {
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.7;
+  }
+  
+  .hero-decoration.bottom-left {
+    bottom: -40px;
+    left: -20px;
+    width: 150px;
+    height: 150px;
+    opacity: 0.7;
+  }
+  
+  /* MAIN SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .main-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .main-content {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+  }
+  
+  .photo-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .photo-frame {
+    width: 280px;
+    height: 350px;
+  }
+  
+  .photo-frame .frame-border {
+    width: 100%;
+    max-width: 280px;
+    max-height: 350px;
+  }
+  
+  .text-section.text-left {
+    text-align: center;
+    padding-left: 0;
+    width: 100%;
+  }
+  
+  .blessing {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .parents-names {
+    margin: 20px 0;
+  }
+  
+  .parents-names p {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  
+  .invitation-text {
+    font-size: 20px;
+    margin: 20px 0 10px;
+  }
+  
+  .graduation-title {
+    font-size: 36px;
+    margin-top: 10px;
+  }
+  
+  /* THANKS SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .thanks-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .thanks-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .thanks-text {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .thanks-decoration {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* COUNTDOWN SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .countdown-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    background-attachment: scroll;
+    display: flex;
+    align-items: center;
+  }
+  
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 25px 0;
+  }
+  
+  .countdown-item {
+    padding: 20px 0;
+  }
+  
+  .countdown-number {
+    font-size: 42px;
+  }
+  
+  .countdown-label {
+    font-size: 14px;
+  }
+  
+  .countdown-title {
+    font-size: 18px;
+  }
+  
+  .countdown-para {
+    font-size: 16px;
+  }
+  
+  .event-date {
+    font-size: 18px;
+  }
+  
+  .countdown-separator {
+    width: 200px;
+  }
+  
+  /* EVENT SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .event-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-section .event-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .event-section .event-info {
+    padding: 20px 15px;
+    margin: 0 auto 30px;
+    max-width: 100%;
+  }
+  
+  .event-section .event-info h3 {
+    font-size: 24px;
+  }
+  
+  .event-section .event-info p {
+    font-size: 20px;
+  }
+  
+  .event-section .map-button {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+  
+  /* CONFIRMATION SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .confirmation-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .confirmation-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    font-size: 18px;
+  }
+  
+  .confirm-button {
+    padding: 12px;
+    font-size: 18px;
+  }
+  
+  .confirmation-note {
+    font-size: 14px;
+  }
+  
+  /* ITINERARY SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  .itinerary-section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .itinerary-title {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  
+  .itinerary-list {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .itinerary-list::before {
+    left: 15px;
+    width: 2px;
+  }
+  
+  .itinerary-item {
+    flex-direction: column;
+    padding-left: 40px;
+    margin-bottom: 25px;
+  }
+  
+  .itinerary-item:nth-child(odd),
+  .itinerary-item:nth-child(even) {
+    flex-direction: column;
+    padding: 0 0 0 40px;
+  }
+  
+  .itinerary-item::before {
+    left: 8px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .itinerary-time {
+    font-size: 18px;
+    text-align: left;
+    padding-bottom: 5px;
+    min-width: 100%;
+  }
+  
+  .itinerary-item:nth-child(even) .itinerary-time {
+    text-align: left;
+    padding-left: 0;
+  }
+  
+  .itinerary-description {
+    font-size: 18px;
+    padding: 15px;
+    border-left: 3px solid #d4af37 !important;
+    border-right: none !important;
+    width: 100%;
+  }
+  
+  /* FOOTER - CELULAR */
+  .footer {
+    padding: 60px 20px;
+    font-size: 11px;
+  }
+  
+  /* SOMBRERO DE GRADUACIÓN - CELULAR (ARREGLADO) */
+  .graduation-hat {
+    position: absolute;
+    width: 70px;
+    height: auto;
+    top: 410px;
+    left: auto;
+    right: 5px;
+    transform: translateY(0) rotate(0deg);
+    z-index: 5;
+    opacity: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    animation: hatEntry 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+  /* AJUSTAR DECORACIONES PARA CELULAR */
+  .diagonal-strip img {
+    width: 100px;
+    opacity: 0.6;
+  }
+  
+  .strip-1 {
+    left: -80px;
+    top: -60px;
+  }
+  
+  .strip-2 {
+    display: none; /* Ocultar en celular para mejor visualización */
+  }
+  
+  .strip-3 {
+    display: none; /* Ocultar en celular para mejor visualización */
+  }
+  
+  .middle-strip {
+    opacity: 0.6;
+  }
+  
+  .strip-left {
+    left: -80px;
+    top: 200px;
+    width: 100px;
+  }
+  
+  .strip-right {
+    right: -80px;
+    top: 220px;
+    width: 100px;
+  }
+  
+  .laurel-left, .laurel-right {
+    height: 180px;
+    opacity: 1;
+  }
+  
+  .laurel-left {
+    left: 7px;
+    top: 50%;
+  }
+  
+  .laurel-right {
+    right: 7px;
+    top: 50%;
+  }
+  
+  .strip-left-side, .strip-right-side, .strip-left-side-two {
+    opacity: 0.6;
+    height: 300px;
+  }
+  
+  .strip-left-side {
+    left: -60px;
+  }
+  
+  .strip-left-side-two {
+    left: -70px;
+  }
+  
+  .strip-right-side {
+    right: -60px;
+  }
+  
+  /* AJUSTAR ESPACIOS ENTRE SECCIONES PARA CELULAR */
+  .section-gap {
+    height: 30px;
+  }
+  
+  .section-spacer {
+    height: 30px;
+  }
+}
+
+/* ==============================
+   RESPONSIVE PARA TABLET (769px - 1024px)
+   ============================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-text h1 {
+    font-size: 56px;
+  }
+  
+  .hero-inline h1 {
+    font-size: 72px;
+  }
+  
+  .main-content {
+    gap: 80px;
+  }
+  
+  .hero-decoration {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .hero-decoration.top-left {
+    top: -100px;
+    left: -50px;
+  }
+  
+  .hero-decoration.top-right {
+    top: -10px;
+    right: -20px;
+  }
+  
+  .graduation-hat {
+    width: 120px;
+    top: 160px;
+  }
+}
+
+/* ==============================
+   ORIENTACIÓN HORIZONTAL EN CELULAR
+   ============================== */
+@media (max-height: 500px) and (max-width: 900px) {
+  .hero {
+    padding: 20px;
+  }
+  
+  .hero-top {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .hero-icon {
+    width: 100px;
+    height: 110px;
+  }
+  
+  .hero-text h1 {
+    font-size: 28px;
+  }
+  
+  .hero-inline h1 {
+    font-size: 32px;
+  }
+  
+  .main-content {
+    flex-direction: row;
+    gap: 40px;
+  }
+  
+  .graduation-hat {
+    width: 50px;
+    top: 60px;
+    right: 15px;
+  }
+}
+
+/* Asegurar que diseño4 sea estático */
+.design4-static,
+img[src*="diseño4"],
+img[src*="diseño4.png"] {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ==============================
+   FOOTER FIJO Y VISIBLE SIEMPRE
+   ============================== */
+.footer {
+  position: static !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: auto !important;
+  padding: 30px 40px !important;
+  background-color: #f5f5f5 !important;
+  border-top: 1px solid #eee !important;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  width: 100%;
+  z-index: 9999;
+  margin-top: 0 !important;
+}
+
+/* Para móvil también */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 20px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* Eliminar cualquier overflow que pueda estar ocultando el footer */
+.container {
+  overflow: visible !important;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
