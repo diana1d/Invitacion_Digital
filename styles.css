@@ -1,3 +1,13 @@
+/* META VIEWPORT FORZADO */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* PREVENIR ZOOM EN INPUTS EN iOS */
+input, textarea, select {
+  font-size: 16px !important; /* Evita zoom en iOS */
+}
 
 * {
   margin: 0;
@@ -1006,7 +1016,7 @@ body {
   }
   
   .hero-inline h1 {
-    font-size: 80px;
+    font-size: 70px;
     line-height: 0.85;
     word-spacing: normal;
     text-align: left;
@@ -1115,12 +1125,12 @@ body {
   }
   
   .thanks-title {
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 20px;
   }
   
   .thanks-text {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
   }
   
