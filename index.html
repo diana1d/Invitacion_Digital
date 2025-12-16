@@ -8,9 +8,19 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Inicializa EmailJS con tu Public Key
+        (function() {
+            emailjs.init('O14nJ81GuJOVjdVkV'); // <-- Reemplaza esto con tu Public Key
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -36,30 +46,32 @@
               <img src="img/diseño4.png" class="strip-3" alt="">
           </div>
         </section>
-        <!-- MAIN SECTION -->
+        <!-- MAIN SECTION - ACTUALIZADO -->
         <section class="main-section">
-          <div class="main-content">
-              <div class="photo-section">
-                  <div class="photo-frame">
-                      <img src="img/laurel.png" alt="Marco de foto" class="frame-border">
-                  </div>
-              </div>
-              <div class="text-section text-left">
-                  <p class="blessing">CON LA BENDICIÓN DE DIOS<br>Y DE MIS PADRES</p>
-                  <div class="parents-names">
-                      <p>HUGO QUISPE CONDORI</p>
-                      <p>&</p>
-                      <p>SANTUSA PARI DE QUISPE</p>
-                  </div>
-                  <p class="invitation-text">TE INVITAMOS A CELEBRAR MI</p><br>
-                  <h2 class="graduation-title">¡GRADUACIÓN!</h2>
-              </div>
-          </div>
-          <!-- DECORATIVOS LATERALES -->
-          <div class="middle-decorations">
-              <img src="img/diseño4.png" class="middle-strip strip-left" alt="">
-              <img src="img/diseño4.png" class="middle-strip strip-right" alt="">
-          </div>
+            <div class="main-content">
+                <div class="photo-section">
+                    <div class="photo-frame">
+                        <!-- Añade esta imagen dentro del marco de laureles -->
+                        <img src="img/foto_user.png" alt="Foto del graduado" class="user-photo">
+                        <img src="img/laurel.png" alt="Marco de foto" class="frame-border">
+                    </div>
+                </div>
+                <div class="text-section text-left">
+                    <p class="blessing">CON LA BENDICIÓN DE DIOS<br>Y DE MIS PADRES</p>
+                    <div class="parents-names">
+                        <p>HUGO QUISPE CONDORI</p>
+                        <p>&</p>
+                        <p>SANTUSA PARI DE QUISPE</p>
+                    </div>
+                    <p class="invitation-text">TE INVITAMOS A CELEBRAR MI</p><br>
+                    <h2 class="graduation-title">¡GRADUACIÓN!</h2>
+                </div>
+            </div>
+            <!-- DECORATIVOS LATERALES -->
+            <div class="middle-decorations">
+                <img src="img/diseño4.png" class="middle-strip strip-left" alt="">
+                <img src="img/diseño4.png" class="middle-strip strip-right" alt="">
+            </div>
         </section>
         <!-- SEPARADOR ENTRE SECCIONES - BLANCO -->
         <div class="section-spacer"></div>
@@ -125,8 +137,8 @@
                 <br><br>
                 <div class="event-info">
                     <h3>ACONTECIMIENTO SOCIAL<br>SALÓN DE EVENTOS<br>GRAN CAPITOLIO<br>17:00 P.M.</h3><br><br>
-                    <p>Dirección por modificar</p>
-                    <a href="https://maps.app.goo.gl/Sw9gnChP8uBt4AxQA" target="_blank" class="map-button">
+                    <p>Avenida Macario Escobari N° 20 zona Mayasa</p>
+                    <a href="https://maps.app.goo.gl/74kia1hjqKfCApC86?g_st=aw" target="_blank" class="map-button">
                         <i class="bi bi-geo-alt-fill"></i> Ver Mapa
                     </a>
                 </div>
@@ -136,24 +148,26 @@
         <div class="section-gap"></div>
         <!-- CONFIRMATION SECTION -->
         <section class="confirmation-section">
-            <!-- STRIPS DECORATIVOS -->
-            <div class="section-strips">
-                <img src="img/diseño4.png" alt="Strip decorativo izquierdo" class="strip-left-side-two">
-                <img src="img/diseño4.png" alt="Strip decorativo derecho" class="strip-right-side">
-            </div>
             <div class="confirmation-content">
                 <img src="img/icono_seccion.png" alt="Icono de Sombrero" class="thanks-decoration">
                 <h2 class="confirmation-title">INVITACIÓN</h2>
                 <p style="font-size: 20px; color: #666; margin-bottom: 30px;">TE AGRADECEMOS QUE CONFIRMES TU ASISTENCIA ANTES DEL 20 DE DICIEMBRE.</p>
+                
+                <!-- FORMULARIO CON EMAILJS -->
                 <form id="confirmationForm">
                     <div class="form-group">
-                        <input type="text" placeholder="ESCRIBE TU NOMBRE COMPLETO" required minlength="6" >
+                        <input type="text" id="nombreCompleto" placeholder="ESCRIBE TU NOMBRE COMPLETO" required minlength="6">
                     </div>
+                    
+                    <!-- Botón CON funcionalidad (restaurado) -->
                     <button type="submit" class="confirm-button">
                         <i class="bi bi-envelope-check"></i> CONFIRMAR ASISTENCIA
                     </button>
                 </form>
-                <p class="confirmation-note">*Si tienes algún inconveniente, por favor, no dudes en contactar por <a href="https://wa.me/59162719405?text=Hola%20tengo%20dudas%20para%20confirmar%20mi%20asistencia%20a%20la%20fiesta%20de%20graduacion%20de%20Jose%20Andres%20Caceres%20Triveño." target="_blank">WhatsApp</a></p>
+                
+                <p class="confirmation-note">
+                    *La confirmación llegará al correo del organizador.
+                </p>
             </div>
         </section>
         <!-- SEPARADOR ENTRE SECCIONES - BLANCO -->
@@ -165,8 +179,8 @@
                 <h2 class="itinerary-title">ITINERARIO</h2>
                 <ul class="itinerary-list">
                     <li class="itinerary-item">
-                        <span class="itinerary-time">15:00 P.M.</span>
-                        <span class="itinerary-description">MISA EN LA IGLESIA SAN PEDRO</span>
+                        <span class="itinerary-time">14:30 P.M.</span>
+                        <span class="itinerary-description">MISA EN LA IGLESIA SAN PEDRO DE ACHACACHI</span>
                     </li>
                     <li class="itinerary-item">
                         <span class="itinerary-time">17:00 P.M.</span>
@@ -190,7 +204,10 @@
     </div>
     <!-- FOOTER -->
         <footer class="footer">
-            <p>Diseñado y Desarrollado por <a href="https://wa.me/qr/RS6CQWTKN3YNG1">Diana Carvajal</a><br>
+            <p>Diseñado y Desarrollado por 
+                <a href="https://wa.me/qr/RS6CQWTKN3YNG1" target="_blank">
+                    Diana Carvajal <i class="fab fa-whatsapp"></i>
+                </a><br>
             Copyright © 2025 Todos los derechos reservados.</p>
         </footer>
     <!-- Bootstrap 5 JS -->

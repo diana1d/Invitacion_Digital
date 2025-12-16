@@ -1,4 +1,6 @@
-/* META VIEWPORT FORZADO */
+/* ==============================
+   META VIEWPORT FORZADO
+   ============================== */
 @viewport {
   width: device-width;
   zoom: 1.0;
@@ -897,12 +899,12 @@ body {
 }
 .laurel-left {
   left: 700px;
-  top: 55%;
+  top: 52%;
   transform: translateY(-50%);
 }
 .laurel-right {
   right: 700px;
-  top: 55%;
+  top: 52%;
   transform: translateY(-50%);
 }
 
@@ -955,9 +957,98 @@ body {
   animation-delay: 0.5s;
 }
 
+/* ==============================
+   FOTO DEL USUARIO DENTRO DE LAURELES - TRANSPARENTE
+   ============================== */
+
+/* Desktop - Foto dentro del marco de laureles */
+.photo-frame {
+    position: relative;
+    width: 480px;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-photo {
+    position: absolute;
+    width: 55%; /* Ajusta este valor según el tamaño de tu foto */
+    height: 65%;
+    object-fit: contain; /* Mantiene proporciones */
+    object-position: center center; /* Centra la imagen */
+    z-index: 2; /* Sobre el marco de laureles */
+    
+    /* BORDE SUAVIZADO - ESTILO VINTAGE/DESVANECIDO */
+    border-radius: 0;
+    background-color: transparent !important;
+    padding: 0;
+    box-shadow: none;
+    
+    /* MÁSCARA PARA BORDE SUAVIZADO - FADE OUT */
+    -webkit-mask-image: 
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,1) 85%,
+            rgba(255,255,255,0.8) 90%,
+            rgba(255,255,255,0.4) 95%,
+            rgba(255,255,255,0) 100%
+        );
+    mask-image: 
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,1) 85%,
+            rgba(255,255,255,0.8) 90%,
+            rgba(255,255,255,0.4) 95%,
+            rgba(255,255,255,0) 100%
+        );
+    
+    /* POSICIÓN AJUSTADA - MUEVE LA FOTO HACIA ARRIBA */
+    top: 42%; /* Ajusta este porcentaje: 50% = centro, menor = más arriba */
+    left: 52%;
+    transform: translate(-50%, -50%);
+}
+
+/* Si quieres un efecto de marco sutil alrededor de la foto */
+.user-photo.has-frame {
+    /* Marco suavizado con gradiente */
+    border: none;
+    box-shadow: 
+        inset 0 0 20px rgba(212, 175, 55, 0.1),
+        0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Overlay de desvanecimiento adicional */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(
+                circle at center,
+                transparent 85%,
+                rgba(212, 175, 55, 0.05) 90%,
+                rgba(212, 175, 55, 0.1) 95%,
+                rgba(212, 175, 55, 0.2) 100%
+            );
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+.frame-border {
+    width: 700px;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+    z-index: 1; /* Debajo de la foto */
+}
 
 /* ==============================
-   RESPONSIVE PARA CELULAR (768px o menos)
+   RESPONSIVE PARA CELULAR (768px o menos) - MODIFICADO
    ============================== */
 @media (max-width: 768px) {
   /* HERO SECTION - CELULAR (AJUSTADO COMO LA IMAGEN) */
@@ -1086,6 +1177,30 @@ body {
     max-height: 350px;
   }
   
+  .user-photo {
+    width: 50%; /* Un poco más pequeño en móvil */
+    height: 60%;
+    top: 45%; /* Ajusta para móvil si es necesario */
+    
+    /* Ajuste de máscara para móvil */
+    -webkit-mask-image: 
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,1) 80%,
+            rgba(255,255,255,0.8) 87%,
+            rgba(255,255,255,0.4) 93%,
+            rgba(255,255,255,0) 100%
+        );
+    mask-image: 
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,1) 80%,
+            rgba(255,255,255,0.8) 87%,
+            rgba(255,255,255,0.4) 93%,
+            rgba(255,255,255,0) 100%
+        );
+  }
+  
   .text-section.text-left {
     text-align: center;
     padding-left: 0;
@@ -1139,47 +1254,151 @@ body {
     height: 60px;
   }
   
-  /* COUNTDOWN SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
+  /* ==============================
+     COUNTDOWN SECTION - CELULAR CON DISEÑO4 DETRÁS - MODIFICADO
+     ============================== */
   .countdown-section {
     padding: 60px 20px;
     min-height: 100vh;
     background-attachment: scroll;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Fondo oscuro para mejorar visibilidad del diseño4 */
+  .countdown-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Oscurecer fondo para contraste */
+    z-index: 1;
+  }
+  
+  .countdown-content {
+    position: relative;
+    z-index: 3 !important; /* Asegurar que esté POR ENCIMA */
+  }
+  
+  .countdown-title {
+    font-size: 18px;
+    position: relative;
+    z-index: 4 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
   }
   
   .countdown {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin: 25px 0;
+    position: relative;
+    z-index: 4 !important;
   }
   
   .countdown-item {
     padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.95); /* Más opaco para contraste */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+    position: relative;
+    z-index: 4 !important;
   }
   
   .countdown-number {
     font-size: 42px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 4 !important;
   }
   
   .countdown-label {
     font-size: 14px;
-  }
-  
-  .countdown-title {
-    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 4 !important;
   }
   
   .countdown-para {
     font-size: 16px;
+    position: relative;
+    z-index: 4 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
   }
   
   .event-date {
     font-size: 18px;
+    position: relative;
+    z-index: 4 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
   }
   
   .countdown-separator {
     width: 200px;
+    position: relative;
+    z-index: 4 !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  /* ==============================
+     DISEÑO4 DETRÁS DEL COUNTDOWN - MODIFICADO
+     ============================== */
+  .countdown-section .diagonal-strip,
+  .countdown-section .strip-1,
+  .countdown-section .strip-2,
+  .countdown-section .strip-3,
+  .countdown-section .countdown-strip {
+    position: absolute !important;
+    z-index: 2 !important; /* DETRÁS del contenido */
+    pointer-events: none;
+  }
+  
+  /* Imágenes de diseño4 específicas para countdown */
+  .countdown-section img[src*="diseño4"],
+  .countdown-section img[src*="diseño4.png"],
+  .countdown-section .strip-1,
+  .countdown-section .strip-2,
+  .countdown-section .strip-3 {
+    opacity: 0.7 !important;
+    z-index: 2 !important;
+  }
+  
+  .countdown-section .strip-1 {
+    left: -80px !important;
+    top: 10% !important;
+    width: 200px !important;
+    height: auto !important;
+    transform: rotate(15deg) !important;
+  }
+  
+  .countdown-section .strip-2 {
+    display: block !important;
+    right: -80px !important;
+    top: 30% !important;
+    width: 200px !important;
+    height: auto !important;
+    transform: rotate(-15deg) !important;
+  }
+  
+  .countdown-section .strip-3 {
+    display: block !important;
+    left: 50% !important;
+    top: 70% !important;
+    transform: translateX(-50%) rotate(90deg) !important;
+    width: 250px !important;
+    height: auto !important;
+  }
+  
+  /* Asegurar que los textos estén por encima */
+  .countdown-section *:not(img):not(.diagonal-strip):not(.strip-1):not(.strip-2):not(.strip-3):not(.countdown-strip) {
+    z-index: 3 !important;
+    position: relative;
   }
   
   /* EVENT SECTION - CELULAR (OCUPA TODA LA PANTALLA) */
@@ -1331,17 +1550,10 @@ body {
     opacity: 0.6;
   }
   
-  .strip-1 {
-    left: -80px;
-    top: -60px;
-  }
-  
-  .strip-2 {
-    display: none; /* Ocultar en celular para mejor visualización */
-  }
-  
-  .strip-3 {
-    display: none; /* Ocultar en celular para mejor visualización */
+  /* Strips 2 y 3 VISIBLES en countdown, ocultos en otras secciones */
+  .strip-2:not(.countdown-section .strip-2),
+  .strip-3:not(.countdown-section .strip-3) {
+    display: none;
   }
   
   .middle-strip {
@@ -1366,13 +1578,13 @@ body {
   }
   
   .laurel-left {
-    left: 7px;
-    top: 50%;
+    left: 8px;
+    top: 46%;
   }
   
   .laurel-right {
-    right: 7px;
-    top: 50%;
+    right: 8px;
+    top: 46%;
   }
   
   .strip-left-side, .strip-right-side, .strip-left-side-two {
@@ -1433,6 +1645,12 @@ body {
     right: -20px;
   }
   
+  .user-photo {
+    width: 53%; /* Ajuste intermedio */
+    height: 63%;
+    top: 49%; /* Ajuste para tablet */
+  }
+  
   .graduation-hat {
     width: 120px;
     top: 160px;
@@ -1468,6 +1686,17 @@ body {
   .main-content {
     flex-direction: row;
     gap: 40px;
+  }
+  
+  .photo-frame {
+    width: 200px;
+    height: 260px;
+  }
+  
+  .user-photo {
+    width: 48%;
+    height: 58%;
+    top: 50%; /* Ajuste para horizontal */
   }
   
   .graduation-hat {

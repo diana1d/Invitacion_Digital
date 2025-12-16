@@ -2,18 +2,233 @@
 // FORM VALIDATION AND COUNTDOWN
 // ==============================
 
-// Form validation and submission
-document.getElementById("confirmationForm").addEventListener("submit", function (e) {
-  e.preventDefault()
-  const nameInput = this.querySelector('input[type="text"]')
-  const name = nameInput.value.trim()
-  if (name.length < 6) {
-    alert("Por favor, escribe tu nombre completo (mínimo 6 caracteres).")
-    return
-  }
-  alert("Gracias por confirmar tu asistencia, " + name + "! Te esperamos en la graduación.")
-  nameInput.value = ""
-})
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmationForm = document.getElementById("confirmationForm");
+    
+    if (confirmationForm) {
+        confirmationForm.addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevenir envío real del formulario
+            
+            const nombreInput = document.getElementById('nombreCompleto');
+            const nombre = nombreInput.value.trim();
+            
+            // Validación básica
+            if (nombre.length < 6) {
+                showAlert("Por favor, escribe tu nombre completo (mínimo 6 caracteres).", "error");
+                nombreInput.focus();
+                return;
+            }
+            
+            // Validar que el nombre tenga al menos un espacio (nombre y apellido)
+            if (!nombre.includes(' ')) {
+                showAlert("Por favor, escribe tu nombre y apellido completos.", "error");
+                nombreInput.focus();
+                return;
+            }
+            
+            // Mostrar loading en el botón
+            const submitButton = this.querySelector('.confirm-button');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="bi bi-hourglass-split"></i> CONFIRMANDO...';
+            submitButton.disabled = true;
+            
+            // Simular envío (sin backend real)
+            setTimeout(() => {
+                // Simulación exitosa
+                showAlert(`¡Gracias ${nombre}! Tu confirmación se ha registrado correctamente. Te esperamos en el evento.`, "success");
+                
+                // Limpiar el formulario
+                nombreInput.value = '';
+                
+                // Restaurar botón
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Aquí puedes agregar código para guardar localmente si lo deseas
+                saveConfirmationLocally(nombre);
+                
+                // Opcional: enviar datos a Google Sheets o similar
+                // sendToGoogleSheets(nombre);
+                
+            }, 1500); // Simula 1.5 segundos de "procesamiento"
+        });
+    }
+    
+    // Función para mostrar alertas personalizadas
+    function showAlert(message, type = "info") {
+        // Crear elemento de alerta
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `custom-alert ${type}`;
+        alertDiv.innerHTML = `
+            <div class="alert-content">
+                <i class="bi ${type === 'success' ? 'bi-check-circle' : type === 'error' ? 'bi-exclamation-circle' : 'bi-info-circle'}"></i>
+                <span>${message}</span>
+            </div>
+            <button class="alert-close">&times;</button>
+        `;
+        
+        // Estilos para la alerta
+        alertDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+            color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+            padding: 15px 20px;
+            border-radius: 5px;
+            border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease;
+        `;
+        
+        // Estilos para el contenido
+        const alertContent = alertDiv.querySelector('.alert-content');
+        alertContent.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        `;
+        
+        // Estilos para el botón de cerrar
+        const closeBtn = alertDiv.querySelector('.alert-close');
+        closeBtn.style.cssText = `
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: inherit;
+            line-height: 1;
+            padding: 0;
+            margin-left: 15px;
+        `;
+        
+        // Animación de entrada
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Agregar al documento
+        document.body.appendChild(alertDiv);
+        
+        // Configurar cierre automático
+        setTimeout(() => {
+            alertDiv.style.animation = 'slideOut 0.3s ease forwards';
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 300);
+        }, 5000);
+        
+        // Configurar cierre manual
+        closeBtn.addEventListener('click', function() {
+            alertDiv.style.animation = 'slideOut 0.3s ease forwards';
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 300);
+        });
+    }
+    
+    // Función para guardar confirmaciones localmente
+    function saveConfirmationLocally(nombre) {
+        try {
+            const confirmaciones = JSON.parse(localStorage.getItem('confirmacionesGraduacion')) || [];
+            const nuevaConfirmacion = {
+                nombre: nombre,
+                fecha: new Date().toISOString(),
+                timestamp: Date.now()
+            };
+            
+            confirmaciones.push(nuevaConfirmacion);
+            localStorage.setItem('confirmacionesGraduacion', JSON.stringify(confirmaciones));
+            
+            console.log('Confirmación guardada localmente:', nuevaConfirmacion);
+            console.log('Total de confirmaciones:', confirmaciones.length);
+        } catch (error) {
+            console.error('Error al guardar localmente:', error);
+        }
+    }
+    
+    // Opcional: Función para enviar a Google Sheets (si configuras una API)
+    function sendToGoogleSheets(nombre) {
+        // URL de tu Google Apps Script (debes configurarlo primero)
+        const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        
+        const data = {
+            nombre: nombre,
+            fecha: new Date().toLocaleString('es-ES'),
+            evento: 'Graduación'
+        };
+        
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Importante para Google Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            console.log('Datos enviados a Google Sheets');
+        })
+        .catch(error => {
+            console.error('Error al enviar a Google Sheets:', error);
+        });
+    }
+    
+    // Mostrar contador de confirmaciones (opcional)
+    function showConfirmationCount() {
+        try {
+            const confirmaciones = JSON.parse(localStorage.getItem('confirmacionesGraduacion')) || [];
+            if (confirmaciones.length > 0) {
+                console.log(`Total de personas confirmadas: ${confirmaciones.length}`);
+                // Puedes mostrar esto en la página si quieres:
+                // const countElement = document.createElement('p');
+                // countElement.textContent = `${confirmaciones.length} personas ya confirmaron`;
+                // countElement.style.cssText = 'text-align: center; color: #666; margin-top: 10px; font-style: italic;';
+                // confirmationForm.appendChild(countElement);
+            }
+        } catch (error) {
+            console.error('Error al leer confirmaciones:', error);
+        }
+    }
+    
+    // Mostrar contador al cargar
+    showConfirmationCount();
+});
+
+// El resto de tu código (countdown, animaciones) permanece igual
 
 // Configura la fecha del evento
 const eventDate = new Date("December 20, 2025 17:00:00").getTime();
@@ -358,8 +573,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Remover cualquier clase de animación
       el.classList.remove('floating', 'float-on-scroll');
     });
-    
-    console.log(`Hice estáticos ${allDesign4Elements.length} elementos de diseño4`);
   }
   
   // Ejecutar al cargar y después de un tiempo
