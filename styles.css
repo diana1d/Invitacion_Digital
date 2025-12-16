@@ -1533,9 +1533,9 @@ body {
     position: absolute;
     width: 70px;
     height: auto;
-    top: 410px;
-    left: auto;
-    right: 5px;
+    top: 408px;
+    left: 245px;
+    right: 10px;
     transform: translateY(0) rotate(0deg);
     z-index: 5;
     opacity: 0;
